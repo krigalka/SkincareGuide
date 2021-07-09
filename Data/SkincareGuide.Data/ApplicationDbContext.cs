@@ -6,11 +6,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using SkincareGuide.Data.Common.Models;
-    using SkincareGuide.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using SkincareGuide.Data.Common.Models;
+    using SkincareGuide.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -25,6 +24,22 @@
         }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Brand> Brands { get; set; }
+
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Ingredient> Ingredients { get; set; }
+
+        public DbSet<Function> Functions { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<ProductIngredient> ProductIngredients { get; set; }
+
+        public DbSet<IngredientFunction> IngredientFunctions { get; set; }
+
+        public DbSet<ProductRating> ProductRatings { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

@@ -2,15 +2,22 @@
 {
     using System.Diagnostics;
 
-    using SkincareGuide.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using SkincareGuide.Web.ViewModels;
+    using SkincareGuide.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
         public IActionResult Index()
         {
-            return this.View();
+            var viewModel = new IndexViewModel
+            {
+                BrandCount = 0,
+                ProductsCount = 23,
+                IngredientsCount = 40,
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

@@ -23,8 +23,6 @@
 
         public string Tag { get; set; }
 
-        [Required]
-
         public string Description { get; set; }
 
         public int? Irritancy { get; set; }

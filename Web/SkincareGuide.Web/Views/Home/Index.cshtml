@@ -2,16 +2,18 @@
 @model SkincareGuide.Web.ViewModels.Home.IndexViewModel
 
 @{
-    this.ViewData["Title"] = "Home Page";
+    this.ViewData["Title"] = "Your skincare guide!";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p> We have:</p>
-    <ul class="list-group">
-        <li class="list-group-item">@Model.BrandCount brands in our site</li>
-        <li class="list-group-item">@Model.ProductsCount - products</li>
-        <li class="list-group-item">@Model.IngredientsCount ingredients are explaned!</li>
- 
-    </ul>
+    <div class="container-fluid">
+        <p> <mark>We have:</mark> </p>
+        <ul class="list-group">
+            <li class="list-group-item">@Model.BrandCount brands in our site</li>
+            <li class="list-group-item">@Model.ProductsCount - products</li>
+            <li class="list-group-item">@Model.IngredientsCount ingredients are explaned!</li>
+
+        </ul>
+    </div>
 </div>

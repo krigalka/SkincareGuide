@@ -1,0 +1,24 @@
+﻿@model SkincareGuide.Web.ViewModels.Products.CreateProductInputModel
+
+<h1 class="text-primary">Product Upload</h1>
+
+<form method='post'>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name" class="text-primary">Name</label><br>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <br />
+
+        <label asp-for="Brand" class="text-primary">Brand</label><br>
+        <input asp-for="Brand" class="form-control" />
+        <span asp-validation-for="Brand" class="text-danger"></span>
+        <br />
+
+        <label asp-for="Ingredients" class="text-primary">I have the ingredient list in text form and can copy-paste it:</label>
+        <textarea asp-for="Ingredients" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Ingredients" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" />
+
+</form>

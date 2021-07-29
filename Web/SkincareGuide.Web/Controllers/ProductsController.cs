@@ -53,6 +53,13 @@
 
         public IActionResult AllProducts(int id = 1)
         {
+            if(id<1)
+            {
+                return this.NotFound();
+            }
+
+           
+
             const int itemsPerPage = 4;
 
             var viewModel = new ProductsListViewModel
@@ -63,6 +70,11 @@
                 Products = this.productsService.GetAll<ProductInListViewModel>(id, itemsPerPage),
 
             };
+
+            if(id>viewModel.PagesCount)
+            {
+                return this.NotFound();
+            }
             return this.View(viewModel);
         }
     }

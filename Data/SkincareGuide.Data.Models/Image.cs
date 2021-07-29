@@ -11,16 +11,13 @@
 
         public virtual Product Product { get; set; }
 
-        [ForeignKey(nameof(Ingredient))]
-        public int IngredientId { get; set; }
-
-        public virtual Ingredient Ingredient { get; set; }
-
         public string UploadedByUserId { get; set; }
 
         public ApplicationUser UploadedByUser { get; set; }
 
         public string Extension { get; set; }
+
+        public string ImageUrl { get; set; }
 
         // The content of the image is in the file system
     }

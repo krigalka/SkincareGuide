@@ -1,9 +1,12 @@
 ﻿namespace SkincareGuide.Web.Controllers
 {
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SkincareGuide.Services.Data;
     using SkincareGuide.Web.ViewModels.Products;
-    using System.Threading.Tasks;
 
     public class ProductsController : Controller
     {
@@ -11,25 +14,32 @@
 
         public ProductsController(IProductsService productsService)
         {
+
             this.productsService = productsService;
         }
 
+        [Authorize]
+
         public IActionResult Create()
         {
-            return this.View();
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var viewModel = new CreateProductInputModel();
+            return this.View(viewModel);
         }
 
         [HttpPost]
+        [Authorize]
 
-        public async Task <IActionResult> Create(CreateProductInputModel input)
+        public async Task<IActionResult> Create(CreateProductInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);
             }
 
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            await this.productsService.CreateAsync(input);
+            await this.productsService.CreateAsync(input, userId);
 
             return this.RedirectToAction("Pending");
 
@@ -39,6 +49,21 @@
         public IActionResult Pending()
         {
             return this.View();
+        }
+
+        public IActionResult AllProducts(int id = 1)
+        {
+            const int itemsPerPage = 4;
+
+            var viewModel = new ProductsListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                ProductsCount = this.productsService.GetCount(),
+                Products = this.productsService.GetAll<ProductInListViewModel>(id, itemsPerPage),
+
+            };
+            return this.View(viewModel);
         }
     }
 }

@@ -318,8 +318,8 @@ namespace SkincareGuide.Data.Migrations
                     b.Property<string>("Extension")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IngredientId")
-                        .HasColumnType("int");
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -334,9 +334,6 @@ namespace SkincareGuide.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IngredientId")
-                        .IsUnique();
 
                     b.HasIndex("IsDeleted");
 
@@ -371,9 +368,6 @@ namespace SkincareGuide.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Irritancy")
@@ -450,6 +444,9 @@ namespace SkincareGuide.Data.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageId")
                         .HasColumnType("nvarchar(max)");
@@ -641,12 +638,6 @@ namespace SkincareGuide.Data.Migrations
 
             modelBuilder.Entity("SkincareGuide.Data.Models.Image", b =>
                 {
-                    b.HasOne("SkincareGuide.Data.Models.Ingredient", "Ingredient")
-                        .WithOne("Image")
-                        .HasForeignKey("SkincareGuide.Data.Models.Image", "IngredientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("SkincareGuide.Data.Models.Product", "Product")
                         .WithOne("Image")
                         .HasForeignKey("SkincareGuide.Data.Models.Image", "ProductId")
@@ -656,8 +647,6 @@ namespace SkincareGuide.Data.Migrations
                     b.HasOne("SkincareGuide.Data.Models.ApplicationUser", "UploadedByUser")
                         .WithMany()
                         .HasForeignKey("UploadedByUserId");
-
-                    b.Navigation("Ingredient");
 
                     b.Navigation("Product");
 
@@ -758,8 +747,6 @@ namespace SkincareGuide.Data.Migrations
             modelBuilder.Entity("SkincareGuide.Data.Models.Ingredient", b =>
                 {
                     b.Navigation("Functions");
-
-                    b.Navigation("Image");
 
                     b.Navigation("Products");
                 });

@@ -7,6 +7,7 @@
 
     using SkincareGuide.Data.Common.Repositories;
     using SkincareGuide.Data.Models;
+    using SkincareGuide.Services.Mapping;
     using SkincareGuide.Web.ViewModels.Products;
 
     public class ProductsService : IProductsService
@@ -28,7 +29,7 @@
             this.brandsRepository = brandsRepository;
         }
 
-        public async Task CreateAsync(CreateProductInputModel input)
+        public async Task CreateAsync(CreateProductInputModel input, string userId)
         {
             var brand = this.brandsRepository.All().FirstOrDefault(x => x.Name == input.Brand);
 
@@ -44,6 +45,8 @@
             {
                 Brand = brand,
                 Name = input.Name,
+                UploadedByUserId = userId,
+                Description = input.Description,
             };
 
             // var productIngredient = new ProductIngredient();
@@ -73,6 +76,23 @@
 
             await this.productsRepository.AddAsync(product);
             await this.productsRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
+        {
+            var products = this.productsRepository.AllAsNoTracking()
+                  .OrderByDescending(x => x.Id)
+                  .Skip((page - 1) * itemsPerPage)
+                  .Take(itemsPerPage)
+                  .To<T>()
+                  .ToList();
+
+            return products;
+        }
+
+        public int GetCount()
+        {
+            return this.productsRepository.All().Count();
         }
     }
 }

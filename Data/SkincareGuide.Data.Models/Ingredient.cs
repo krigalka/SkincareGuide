@@ -29,10 +29,6 @@
 
         public int? Comedogenicity { get; set; }
 
-        public string ImageId { get; set; }
-
-        public virtual Image Image { get; set; }
-
         public virtual ICollection<IngredientFunction> Functions { get; set; }
 
         public virtual ICollection<ProductIngredient> Products { get; set; }

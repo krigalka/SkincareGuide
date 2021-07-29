@@ -18,9 +18,11 @@
 
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         public string UploadedByUserId { get; set; }
 
-        public virtual ApplicationUser UploadedByUser { get; set; } // после ще го вържем с потребител
+        public virtual ApplicationUser UploadedByUser { get; set; }
 
         public int ProductRatingId { get; set; }
 

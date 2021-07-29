@@ -15,6 +15,10 @@
 
         [Required]
         [MinLength(10)]
+        public string Description { get; set; }
+
+        [Required]
+        [MinLength(10)]
         public string Ingredients { get; set; }
 
        // public virtual Image Image { get; set; }

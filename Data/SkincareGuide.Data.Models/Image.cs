@@ -23,6 +23,8 @@
 
         public string Extension { get; set; }
 
+        public string NameDB { get; set; }
+
         public string ImageUrl { get; set; }
 
         // The content of the image is in the file system

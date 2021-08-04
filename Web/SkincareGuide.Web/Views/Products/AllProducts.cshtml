@@ -1,0 +1,54 @@
+﻿@model SkincareGuide.Web.ViewModels.Products.ProductsListViewModel;
+
+
+@{
+    this.ViewData["Title"] = "All Skincare products in our database";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+<br />
+
+<div class="row">
+
+    @foreach (var product in this.Model.Products)
+    {
+        <div class="col-md-6 h-100">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/images/products/@product.ImageId.@product.ImageExtension" alt="No Photo Yet" />
+                <h4 class="card-title text-primary">@product.Name</h4>
+                <h5 class="text-info">@product.BrandName</h5>
+                <p class="card-text">Added by @product.UploadedByUserEmail on @product.CreatedOn.ToShortDateString()</p>
+                <a href="#" class="btn btn-outline-primary">Go to @product.Name</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+<hr />
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-lg-center">
+
+        <li class="page-item @if (!Model.HasPreviousPage) {<text>disabled</text>} "><a class="page-link" asp-action="AllProducts" asp-route-id="@Model.PreviousPageNumber">Previous</a></li>
+        @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"> <a class="page-link" asp-action="AllProducts" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item disabled"><a class="page-link">@Model.PageNumber </a></li>
+
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"> <a class="page-link" asp-action="AllProducts" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item @if (!Model.HasNextPage) {<text>disabled</text>} "><a class="page-link" asp-action="AllProducts" asp-route-id="@Model.NextPageNumber">Next</a></li>
+    </ul>
+</nav>
+
+

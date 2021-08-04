@@ -18,6 +18,8 @@
         [Required]
         public IFormFile Image { get; set; }
 
+        public string ImageUrl { get; set; }
+
         [Required]
         [MinLength(10)]
         public string Description { get; set; }

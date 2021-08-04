@@ -8,9 +8,20 @@
 
         <div class="form-group">
             <label asp-for="Image" class="text-primary">Image</label><br>
-            <input asp-for="Image" class="form-control">
+            <input asp-for="Image" class="btn btn-primary btn-block">
+            @*<input asp-for="Image" class="form-control bg-primary">*@
             <span asp-validation-for="Image" class="text-danger"></span>
         </div>
+        <br />
+
+       <p class="text-primary"> OR </p>
+        
+        <br />
+        
+        <input asp-for="ImageUrl" class="form-control" id="url"/>
+      <a href ="#" class="btn btn-primary btn-block" onclick="">Save Image by URL</a>
+
+
         <br />
 
 

@@ -47,14 +47,14 @@
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             // save image to wwwroot/products
-            string wwwRootPath = this.hostEnvironment.ContentRootPath;
+            string wwwRootPath = this.hostEnvironment.WebRootPath;
             string path = $"{wwwRootPath}/images/products/";
 
             await this.productsService.CreateAsync(input, userId, path);
 
             return this.RedirectToAction("Pending");
 
-                        // return this.Json(path);
+            // return this.Json(path);
         }
 
         public IActionResult Pending()
@@ -85,6 +85,11 @@
             }
 
             return this.View(viewModel);
+        }
+
+        public IActionResult Image()
+        {
+            return this.PhysicalFile(this.hostEnvironment.WebRootPath + "/images/products/d4acc91e-72f4-4943-88fe-4eecb2635c39.jpg", "image/jpg");
         }
     }
 }

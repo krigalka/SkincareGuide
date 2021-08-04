@@ -38,6 +38,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\products\" />
+    <None Include="wwwroot\images\products\053afb49-86d2-4796-927b-8d5926199bef.jpg" />
+    <None Include="wwwroot\images\products\08008533-ff66-4704-8d78-5764d999364d.jpg" />
+    <None Include="wwwroot\images\products\17ad42bd-7980-4285-a332-c6b89d8ed9af.jpg" />
+    <None Include="wwwroot\images\products\4b6926b7-a1ff-466a-be4f-28afb3f9f1ef.jpg" />
+    <None Include="wwwroot\images\products\508c4359-e5d5-46c8-8837-8c9d12cf3cba.jpg" />
+    <None Include="wwwroot\images\products\58b5bdf4-9814-432c-9d5e-40083d7fb065.jpg" />
+    <None Include="wwwroot\images\products\93abc818-0697-4220-bed1-a80a28932ea2.jpg" />
+    <None Include="wwwroot\images\products\a9ffda62-8400-4027-aa57-0d4d153682c7.jpg" />
+    <None Include="wwwroot\images\products\c7ddebd8-8259-4da5-b6a9-6301a37ebedd.jpg" />
+    <None Include="wwwroot\images\products\d4acc91e-72f4-4943-88fe-4eecb2635c39.jpg" />
+    <None Include="wwwroot\images\products\e57794fa-ddac-421c-ab57-b5a4dfbe7e55.jpg" />
+    <None Include="wwwroot\images\products\e582cdb4-9493-4ae1-aa69-4460b0c2e1d5.jpg" />
+    <None Include="wwwroot\images\products\ea759483-e511-415a-a81b-8a81e84ff9da.jpg" />
   </ItemGroup>
 </Project>

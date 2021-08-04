@@ -58,12 +58,14 @@
                 Extension = extension,
             };
 
-            var physicalPath = $"{path}/{dbImage.Id}.{dbImage.Extension}";
+            var physicalPath = $"{path}{dbImage.Id}.{dbImage.Extension}";
 
             using (FileStream fs = new FileStream(physicalPath, FileMode.Create))
             {
                 await input.Image.CopyToAsync(fs);
             }
+
+            dbImage.NameDB = $"{dbImage.Id}.{dbImage.Extension}";
 
             var product = new Product
             {

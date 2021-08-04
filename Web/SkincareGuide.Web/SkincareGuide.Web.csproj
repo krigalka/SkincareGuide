@@ -36,4 +36,8 @@
     <ProjectReference Include="..\SkincareGuide.Web.Infrastructure\SkincareGuide.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SkincareGuide.Web.ViewModels\SkincareGuide.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\products\" />
+  </ItemGroup>
 </Project>

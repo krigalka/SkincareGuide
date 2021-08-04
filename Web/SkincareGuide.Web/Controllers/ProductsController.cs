@@ -1,9 +1,12 @@
 ﻿namespace SkincareGuide.Web.Controllers
 {
+    using System;
+    using System.IO;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using SkincareGuide.Services.Data;
     using SkincareGuide.Web.ViewModels.Products;
@@ -11,11 +14,14 @@
     public class ProductsController : Controller
     {
         private IProductsService productsService;
+        private IWebHostEnvironment hostEnvironment;
 
-        public ProductsController(IProductsService productsService)
+        public ProductsController(
+            IProductsService productsService,
+            IWebHostEnvironment hostEnvironment)
         {
-
             this.productsService = productsService;
+            this.hostEnvironment = hostEnvironment;
         }
 
         [Authorize]
@@ -24,6 +30,7 @@
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var viewModel = new CreateProductInputModel();
+
             return this.View(viewModel);
         }
 
@@ -39,11 +46,15 @@
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            await this.productsService.CreateAsync(input, userId);
+            // save image to wwwroot/products
+            string wwwRootPath = this.hostEnvironment.ContentRootPath;
+            string path = $"{wwwRootPath}/images/products/";
+
+            await this.productsService.CreateAsync(input, userId, path);
 
             return this.RedirectToAction("Pending");
 
-            // return this.Json(input);
+                        // return this.Json(path);
         }
 
         public IActionResult Pending()
@@ -53,12 +64,10 @@
 
         public IActionResult AllProducts(int id = 1)
         {
-            if(id<1)
+            if (id < 1)
             {
                 return this.NotFound();
             }
-
-           
 
             const int itemsPerPage = 4;
 
@@ -68,13 +77,13 @@
                 PageNumber = id,
                 ProductsCount = this.productsService.GetCount(),
                 Products = this.productsService.GetAll<ProductInListViewModel>(id, itemsPerPage),
-
             };
 
-            if(id>viewModel.PagesCount)
+            if (id > viewModel.PagesCount)
             {
                 return this.NotFound();
             }
+
             return this.View(viewModel);
         }
     }

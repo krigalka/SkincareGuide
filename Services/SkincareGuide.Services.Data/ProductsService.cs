@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Http;
     using SkincareGuide.Data.Common.Repositories;
     using SkincareGuide.Data.Models;
     using SkincareGuide.Services.Mapping;
@@ -12,6 +14,7 @@
 
     public class ProductsService : IProductsService
     {
+        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
         private IDeletableEntityRepository<Product> productsRepository;
         private IDeletableEntityRepository<ProductIngredient> productsIngredientsRepository;
         private IDeletableEntityRepository<Ingredient> ingredientsRepository;
@@ -29,7 +32,7 @@
             this.brandsRepository = brandsRepository;
         }
 
-        public async Task CreateAsync(CreateProductInputModel input, string userId)
+        public async Task CreateAsync(CreateProductInputModel input, string userId, string path)
         {
             var brand = this.brandsRepository.All().FirstOrDefault(x => x.Name == input.Brand);
 
@@ -41,19 +44,40 @@
                 };
             }
 
+            string extension = Path.GetExtension(input.Image.FileName).TrimStart('.');
+
+            // TODO: validation attribute for Image extension
+            if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
+            {
+                throw new Exception($"Invalid image extension {extension}");
+            }
+
+            var dbImage = new Image
+            {
+                UploadedByUserId = userId,
+                Extension = extension,
+            };
+
+            var physicalPath = $"{path}/{dbImage.Id}.{dbImage.Extension}";
+
+            using (FileStream fs = new FileStream(physicalPath, FileMode.Create))
+            {
+                await input.Image.CopyToAsync(fs);
+            }
+
             var product = new Product
             {
                 Brand = brand,
+                ImageId = dbImage.Id,
+                Image = dbImage,
                 Name = input.Name,
                 UploadedByUserId = userId,
                 Description = input.Description,
             };
 
-            // var productIngredient = new ProductIngredient();
-            // var productIngredients = new List<ProductIngredient>();
             var ingredients = input.Ingredients.
-             Split(",")
-             .ToList();
+         Split(",")
+         .ToList();
 
             foreach (var ing in ingredients)
             {
@@ -75,6 +99,7 @@
             }
 
             await this.productsRepository.AddAsync(product);
+
             await this.productsRepository.SaveChangesAsync();
         }
 

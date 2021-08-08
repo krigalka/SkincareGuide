@@ -1,0 +1,257 @@
+﻿@model SkincareGuide.Web.ViewModels.Products.ItemProductViewModel;
+
+@{
+    this.ViewData["Title"] = Model.Name;
+}
+
+<h1>@this.ViewData["Title"]</h1>
+<br />
+<div class="detailpage">
+
+    <div class="std-side-padding paddingtl">
+        <div class="prodinfocontainer">
+
+            <div class="imgcontainer fleft">
+                <div class="image imgborder" id="product-main-image">
+                    <picture>
+                        @*<source srcset="https://incidecoder-content.storage.googleapis.com/8f9f744a-d26a-4f6b-a616-44d225277e4c/products/tatcha-water-cream/tatcha-water-cream_front_photo_300x300@1x.webp 1.0000x, https://incidecoder-content.storage.googleapis.com/8f9f744a-d26a-4f6b-a616-44d225277e4c/products/tatcha-water-cream/tatcha-water-cream_front_photo_300x300@2x.webp 1.3233x" type="image/webp">
+                            <source srcset="https://incidecoder-content.storage.googleapis.com/8f9f744a-d26a-4f6b-a616-44d225277e4c/products/tatcha-water-cream/tatcha-water-cream_front_photo_300x300@1x.jpeg 1.0000x, https://incidecoder-content.storage.googleapis.com/8f9f744a-d26a-4f6b-a616-44d225277e4c/products/tatcha-water-cream/tatcha-water-cream_front_photo_300x300@2x.jpeg 1.3233x" type="image/jpeg">*@
+
+
+                        <img src="https://incidecoder-content.storage.googleapis.com/8f9f744a-d26a-4f6b-a616-44d225277e4c/products/tatcha-water-cream/tatcha-water-cream_front_photo_original.jpeg" alt="Tatcha Water Cream">
+
+                    </picture>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="prodinfobox prodnexttoimage fleft">
+
+            <div class="marginb23">
+
+                <div class="fs21 normal">
+                    <span id="product-brand-title">
+                        <a href="/brands/tatcha" class="text-primary">@Model.BrandName</a>
+
+                    </span>
+                </div>
+                <div class="klavikab lilac"><span id="product-title">@Model.Name</span></div>
+
+
+                <div class="marginb23 margint23 italic">
+                    <span id="product-details">
+                        @Model.Description
+
+                    </span>
+                </div>
+
+                <div class="fs12">Uploaded by: @Model.UploadedByUserEmail on @Model.CreatedOn.ToShortDateString()</div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="ingredlist-short-like-section">
+        <h2 class="section-v3-title std-side-padding paddingt60">Ingredients overview</h2>
+
+
+        <div class="std-side-padding paddingtb30">
+            <div id="ingredlist-short">
+                <p>@Model.Ingredients.Count()</p>
+                <div class="" role="group">
+                    @foreach (var ing in this.Model.Ingredients)
+                    {
+                        <span class="" role="listitem">
+                            <a href="/ingredients/{@ing.IngredientName}" class="ingred-link black">@ing.IngredientName</a>
+                            <span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-water"></span>
+                        </span>
+                    }
+                </div>
+
+
+
+                @* <div class="fs16" id="inci-comment">*Hadasei-3</div>*@
+
+
+
+                @*<div class="std-side-padding paddingb30">*@
+                @*<div class="fs16 bold">
+
+                        <span id="compare-controls">
+                            <span class="link-with-icon">
+                                <button data-postlinkurl="/compare/add/tatcha-water-cream" data-postlinkdata="{ &quot;title&quot;: &quot;Tatcha Water Cream&quot; }" class="postlink link-like">
+                                    <img src="https://incidecoder-assets.storage.googleapis.com/assets/img/000062-two-documents-text.svg" class="link-icon">Compare
+                                </button>
+
+                            </span>
+
+                            <span class="vertical-separator "></span>
+                        </span>
+
+
+
+
+                        <span class="link-with-icon">
+                            <button id="open-report-error-dialog" title="Click here to report a problem with this page" class="link-like bold">
+                                <img src="https://incidecoder-assets.storage.googleapis.com/assets/img/triangle-exclamation-mark-2.svg" class="link-icon">Report Error
+                            </button>
+                        </span>
+                        <span class="vertical-separator"></span>
+
+                        <span class="link-with-icon">
+                            <button class="link-like bold" id="openblogdialog" title="Click here to embed ingredient list into your blog">
+                                <img src="https://incidecoder-assets.storage.googleapis.com/assets/img/embed-to-blog.svg" class="link-icon" alt="">Embed
+                            </button>
+                        </span>
+                    </div>*@
+                @*</div>*@
+
+
+                @*</div>*@
+            </div>
+
+            <div class="ingredlist-short-like-section" id="ingredlist-highlights-section">
+
+                @* <h2 class="section-v3-title std-side-padding">Highlights</h2>*@
+
+                <div class="std-side-padding paddingtb30">
+                    <div class="ingredlist-by-function-block">
+                        <h3 class="klavikab lilac">Ingredients by function</h3><div>
+                            <span class="bold"><a href="/ingredient-functions/antioxidant" class="func-link" title="">Antioxidant</a></span>:
+                            <span><a href="/ingredients/houttuynia-cordata-extract" class="ingred-link black    ">Houttuynia Cordata Extract</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-houttuynia-cordata-extract"></span></span>
+                        </div><div>
+                            <span class="bold"><a href="/ingredient-functions/skin-identical-ingredient" class="func-link" title="">Skin-identical ingredient</a></span>:
+                            <span><a href="/ingredients/glycerin" class="ingred-link black    ">Glycerin</a><span class="info-circle info-circle-ingred-short our-take-superstar tooltip tooltipstered" data-tooltip-content="#tt-glycerin"></span>, </span><span><a href="/ingredients/diglycerin" class="ingred-link black    ">Diglycerin</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-diglycerin"></span>, </span><span><a href="/ingredients/sodium-hyaluronate" class="ingred-link black    ">Sodium Hyaluronate</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-sodium-hyaluronate"></span></span>
+                        </div><div>
+                            <span class="bold"><a href="/ingredient-functions/soothing" class="func-link" title="">Soothing</a></span>:
+                            <span><a href="/ingredients/houttuynia-cordata-extract" class="ingred-link black    ">Houttuynia Cordata Extract</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-houttuynia-cordata-extract"></span></span>
+                        </div><div>
+                            <span class="bold"><a href="/ingredient-functions/sunscreen" class="func-link" title="">Sunscreen</a></span>:
+                            <span><a href="/ingredients/titanium-dioxide" class="ingred-link black    ">Titanium Dioxide</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-titanium-dioxide"></span></span>
+                        </div>
+                    </div><p class="paddingtb20"><button class="link-like readmore arrowleft16 fs16">Show all ingredients by function</button></p>
+                    <div style="display: none;">
+                        <div class="ingredlist-by-function-block">
+                            <h3 class="klavikab lilac">Other Ingredients</h3><div>
+                                <span class="bold"><a href="/ingredient-functions/abrasive-scrub" class="func-link" title="">Abrasive/scrub</a></span>:
+                                <span><a href="/ingredients/tin-oxide" class="ingred-link black    ">Tin Oxide</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-tin-oxide"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/antimicrobial-antibacterial" class="func-link" title="">Antimicrobial/antibacterial</a></span>:
+                                <span><a href="/ingredients/alcohol" class="ingred-link black    ">Alcohol</a><span class="info-circle info-circle-ingred-short our-take-icky tooltip tooltipstered" data-tooltip-content="#tt-alcohol"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/buffering" class="func-link" title="">Buffering</a></span>:
+                                <span><a href="/ingredients/sodium-citrate" class="ingred-link black    ">Sodium Citrate</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-sodium-citrate"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/chelating" class="func-link" title="">Chelating</a></span>:
+                                <span><a href="/ingredients/sodium-citrate" class="ingred-link black    ">Sodium Citrate</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-sodium-citrate"></span>, </span><span><a href="/ingredients/disodium-edta" class="ingred-link black    ">Disodium Edta</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-disodium-edta"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/colorant" class="func-link" title="">Colorant</a></span>:
+                                <span><a href="/ingredients/gold" class="ingred-link black    ">Gold</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-gold"></span>, </span><span><a href="/ingredients/mica" class="ingred-link black    ">Mica</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-mica"></span>, </span><span><a href="/ingredients/tin-oxide" class="ingred-link black    ">Tin Oxide</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-tin-oxide"></span>, </span><span><a href="/ingredients/titanium-dioxide" class="ingred-link black    ">Titanium Dioxide</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-titanium-dioxide"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/emollient" class="func-link" title="">Emollient</a></span>:
+                                <span><a href="/ingredients/dimethicone" class="ingred-link black    ">Dimethicone</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-dimethicone"></span>, </span><span><a href="/ingredients/lecithin" class="ingred-link black    ">Lecithin</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-lecithin"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/emulsifying" class="func-link" title="">Emulsifying</a></span>:
+                                <span><a href="/ingredients/lecithin" class="ingred-link black    ">Lecithin</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-lecithin"></span>, </span><span><a href="/ingredients/peg-9-polydimethylsiloxyethyl-dimethicone" class="ingred-link black    ">Peg-9 Polydimethylsiloxyethyl Dimethicone</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-peg-9-polydimethylsiloxyethyl-dimethicone"></span>, </span><span><a href="/ingredients/dimethicone-peg-10-15-crosspolymer" class="ingred-link black    ">Dimethicone/​Peg-10/​15 Crosspolymer</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-dimethicone-peg-10-15-crosspolymer"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/moisturizer-humectant" class="func-link" title="">Moisturizer/humectant</a></span>:
+                                <span><a href="/ingredients/saccharomyces-camellia-sinensis-leaf-cladosiphon-okamuranus-rice-ferment-filtrate" class="ingred-link black    ">Saccharomyces/​Camellia Sinensis Leaf/​Cladosiphon Okamuranus/​Rice Ferment Filtrate*</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-saccharomyces-camellia-sinensis-leaf-cladosiphon-okamuranus-rice-ferment-filtrate"></span>, </span><span><a href="/ingredients/propanediol" class="ingred-link black    ">Propanediol</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-propanediol"></span>, </span><span><a href="/ingredients/glycerin" class="ingred-link black    ">Glycerin</a><span class="info-circle info-circle-ingred-short our-take-superstar tooltip tooltipstered" data-tooltip-content="#tt-glycerin"></span>, </span><span><a href="/ingredients/diglycerin" class="ingred-link black    ">Diglycerin</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-diglycerin"></span>, </span><span><a href="/ingredients/sodium-hyaluronate" class="ingred-link black    ">Sodium Hyaluronate</a><span class="info-circle info-circle-ingred-short our-take-goodie tooltip tooltipstered" data-tooltip-content="#tt-sodium-hyaluronate"></span>, </span><span><a href="/ingredients/butylene-glycol" class="ingred-link black    ">Butylene Glycol</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-butylene-glycol"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/perfuming" class="func-link" title="">Perfuming</a></span>:
+                                <span><a href="/ingredients/parfum" class="ingred-link black    ">Parfum/​Fragrance</a><span class="info-circle info-circle-ingred-short our-take-icky tooltip tooltipstered" data-tooltip-content="#tt-parfum"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/preservative" class="func-link" title="">Preservative</a></span>:
+                                <span><a href="/ingredients/ethylhexylglycerin" class="ingred-link black    ">Ethylhexylglycerin</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-ethylhexylglycerin"></span>, </span><span><a href="/ingredients/phenoxyethanol" class="ingred-link black    ">Phenoxyethanol</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-phenoxyethanol"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/solvent" class="func-link" title="">Solvent</a></span>:
+                                <span><a href="/ingredients/water" class="ingred-link black    ">Aqua/​Water/​Eau</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-water"></span>, </span><span><a href="/ingredients/propanediol" class="ingred-link black    ">Propanediol</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-propanediol"></span>, </span><span><a href="/ingredients/butylene-glycol" class="ingred-link black    ">Butylene Glycol</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-butylene-glycol"></span>, </span><span><a href="/ingredients/alcohol" class="ingred-link black    ">Alcohol</a><span class="info-circle info-circle-ingred-short our-take-icky tooltip tooltipstered" data-tooltip-content="#tt-alcohol"></span></span>
+                            </div><div>
+                                <span class="bold"><a href="/ingredient-functions/viscosity-controlling" class="func-link" title="">Viscosity controlling</a></span>:
+                                <span><a href="/ingredients/sodium-chloride" class="ingred-link black    ">Sodium Chloride</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-sodium-chloride"></span>, </span><span><a href="/ingredients/dimethicone-phenyl-vinyl-dimethicone-crosspolymer" class="ingred-link black    ">Dimethicone/​Phenyl Vinyl Dimethicone Crosspolymer</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-dimethicone-phenyl-vinyl-dimethicone-crosspolymer"></span>, </span><span><a href="/ingredients/tin-oxide" class="ingred-link black    ">Tin Oxide</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-tin-oxide"></span>, </span><span><a href="/ingredients/butylene-glycol" class="ingred-link black    ">Butylene Glycol</a><span class="info-circle info-circle-ingred-short our-take-no-take tooltip tooltipstered" data-tooltip-content="#tt-butylene-glycol"></span>, </span><span><a href="/ingredients/alcohol" class="ingred-link black    ">Alcohol</a><span class="info-circle info-circle-ingred-short our-take-icky tooltip tooltipstered" data-tooltip-content="#tt-alcohol"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="ingredlist-table-section">
+                <h2 class="section-v3-title std-side-padding">Skim through</h2>
+
+                <div class="std-side-padding paddingtb30 showmore-section" id="showmore-section-ingredlist-table">
+                    <table class="product-skim fs16">
+                        <thead>
+                            <tr>
+                                <th>Ingredient name</th>
+                                <th>what-it-does</th>
+                                <th>
+                                    <span class="tooltip tooltipstered">irr.</span>,
+                                    <span class="tooltip tooltipstered">com.</span>
+                                </th>
+                                <th>ID-Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="">
+                                <td>
+                                    <a href="/ingredients/water" class="black ingred-detail-link">Aqua/Water/Eau</a>
+                                </td>
+                                <td><a href="/ingredient-functions/solvent" class="lilac ingred-function-link">solvent</a></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="">
+                                <td>
+                                    <a href="/ingredients/saccharomyces-camellia-sinensis-leaf-cladosiphon-okamuranus-rice-ferment-filtrate" class="black ingred-detail-link">Saccharomyces/Camellia Sinensis Leaf/Cladosiphon Okamuranus/Rice Ferment Filtrate*</a>
+                                </td>
+                                <td><a href="/ingredient-functions/moisturizer-humectant" class="lilac ingred-function-link">moisturizer/​humectant</a></td>
+                                <td></td>
+                                <td><span class="our-take our-take-goodie">goodie</span></td>
+                            </tr>
+                            <tr class="">
+                                <td>
+                                    <a href="/ingredients/dimethicone" class="black ingred-detail-link">Dimethicone</a>
+                                </td>
+                                <td><a href="/ingredient-functions/emollient" class="lilac ingred-function-link">emollient</a></td>
+                                <td>
+                                    <span class="irrncom">
+                                        <span class="colorcode0" title="irritancy: 0">0</span>,
+                                        <span class="colorcode1" title="comedogenicity: 1">1</span>
+                                    </span>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="">
+                                <td>
+                                    <a href="/ingredients/propanediol" class="black ingred-detail-link">Propanediol</a>
+                                </td>
+                                <td>
+                                    <a href="/ingredient-functions/solvent" class="lilac ingred-function-link">solvent</a>,
+                                    <a href="/ingredient-functions/moisturizer-humectant" class="lilac ingred-function-link">moisturizer/​humectant</a>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="showmore-link paddingt30">
+
+
+                        <button class="link-like showmore-link-mobile showmore-link">[more]</button>
+
+
+                        <button class="link-like showmore-link-desktop showmore-link">[more]</button>
+
+
+                        <button class="link-like showless-link">[less]</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -55,6 +55,7 @@
             var dbImage = new Image
             {
                 UploadedByUserId = userId,
+                ImageUrl = input.ImageUrl,
                 Extension = extension,
             };
 
@@ -120,6 +121,16 @@
         public int GetCount()
         {
             return this.productsRepository.All().Count();
+        }
+
+        public T GetProductItem<T>(string name)
+        {
+            var product = this.productsRepository
+                .All()
+                .Where(x => x.Name == name)
+                .To<T>()
+                .FirstOrDefault();
+            return product;
         }
     }
 }

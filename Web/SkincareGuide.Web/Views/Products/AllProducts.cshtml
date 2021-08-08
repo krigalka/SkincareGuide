@@ -14,11 +14,11 @@
     {
         <div class="col-md-6 h-100">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/products/@product.ImageId.@product.ImageExtension" alt="No Photo Yet" />
+                <img src="~/images/products/@product.ImageId.@product.ImageExtension" class="img-fluid" alt="No Photo Yet" />
                 <h4 class="card-title text-primary">@product.Name</h4>
                 <h5 class="text-info">@product.BrandName</h5>
                 <p class="card-text">Added by @product.UploadedByUserEmail on @product.CreatedOn.ToShortDateString()</p>
-                <a href="#" class="btn btn-outline-primary">Go to @product.Name</a>
+                <a asp-action = "Item" asp-route-name ="@product.Name" class="btn btn-outline-primary">Go to @product.Name</a>
             </div>
         </div>
     }

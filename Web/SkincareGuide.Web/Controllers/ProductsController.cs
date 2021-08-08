@@ -13,10 +13,10 @@
 
     public class ProductsController : Controller
     {
-        private IProductsService productsService;
-        private IWebHostEnvironment hostEnvironment;
+       private readonly IProductsService productsService;
+       private readonly IWebHostEnvironment hostEnvironment;
 
-        public ProductsController(
+       public ProductsController(
             IProductsService productsService,
             IWebHostEnvironment hostEnvironment)
         {
@@ -24,9 +24,9 @@
             this.hostEnvironment = hostEnvironment;
         }
 
-        [Authorize]
+       [Authorize]
 
-        public IActionResult Create()
+       public IActionResult Create()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var viewModel = new CreateProductInputModel();
@@ -34,10 +34,10 @@
             return this.View(viewModel);
         }
 
-        [HttpPost]
-        [Authorize]
+       [HttpPost]
+       [Authorize]
 
-        public async Task<IActionResult> Create(CreateProductInputModel input)
+       public async Task<IActionResult> Create(CreateProductInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -57,12 +57,12 @@
             // return this.Json(path);
         }
 
-        public IActionResult Pending()
+       public IActionResult Pending()
         {
             return this.View();
         }
 
-        public IActionResult AllProducts(int id = 1)
+       public IActionResult AllProducts(int id = 1)
         {
             if (id < 1)
             {
@@ -87,9 +87,18 @@
             return this.View(viewModel);
         }
 
-        public IActionResult Image()
+       public IActionResult Image()
         {
-            return this.PhysicalFile(this.hostEnvironment.WebRootPath + "/images/products/d4acc91e-72f4-4943-88fe-4eecb2635c39.jpg", "image/jpg");
+         
+           return this.PhysicalFile(this.hostEnvironment.WebRootPath + "/images/products/d4acc91e-72f4-4943-88fe-4eecb2635c39.jpg", "image/jpg");
+        }
+
+       public IActionResult Item(string name)
+        {
+            var product = this.productsService.GetProductItem<ItemProductViewModel>(name);
+
+            return this.View(product);
+           // return this.Json(name);
         }
     }
 }

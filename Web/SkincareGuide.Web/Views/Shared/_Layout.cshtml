@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
-    <link href="~/css/all-styles.css" rel="stylesheet" asp-append-version="true"/>
+    <link href="~/css/all-styles.css" rel="stylesheet" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+   
+
 </head>
 <body>
     <header>
@@ -53,6 +55,39 @@
     </div>
 
     <footer class="border-top footer text-muted">
+        <div class="maxwidth">
+            <div class="emailbox">
+                <div class="simple-side-padding">
+                    We do a Best of SkinCareGuide email once a month with the most interesting products and ingredients we bump into.
+
+
+                    <form method="post" action="/savemail" id="emailform">
+
+
+                        <div class="form">
+                            <input type="email" value="" name="email" class="email" placeholder="Your email address">
+
+                        </div>
+                        <div class="failure hidden">
+                            An error has occurred. Please try again later!
+                        </div>
+
+                        <div class="recaptcha hidden">
+                            <div>Click below to subscribe:</div>
+                            <div class="g-recaptcha inline-block" data-sitekey="6LdmrlAaAAAAAIvDamh1lwjL-tB3hVO57XIy90eo" id="email-signup-recaptcha"></div>
+                        </div>
+
+                        <div class="success hidden paddingt30">
+                            <span class="klavikab">
+                                Thanks. :)  You are almost done: please check your mailbox to confirm your email!
+                            </span>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

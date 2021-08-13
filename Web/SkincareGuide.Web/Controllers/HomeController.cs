@@ -12,7 +12,7 @@
         {
             var viewModel = new IndexViewModel
             {
-                BrandCount = 0,
+                BrandCount = 10,
                 ProductsCount = 23,
                 IngredientsCount = 40,
             };

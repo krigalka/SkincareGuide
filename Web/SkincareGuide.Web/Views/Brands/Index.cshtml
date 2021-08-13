@@ -1,0 +1,17 @@
+﻿@model SkincareGuide.Web.ViewModels.Brands.BrandIndexViewModel
+
+@{
+    this.ViewData["Title"] = "All Brands in our database";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+
+<ul class="list-group">
+    @foreach (var brand in this.Model.BrandsNames)
+    {
+        <a asp-action="BrandProducts" asp-route-name="@brand.Name" class="list-group-item list-group-item-action list-group-item-primary">@brand.Name</a>
+    }
+</ul>
+
+
